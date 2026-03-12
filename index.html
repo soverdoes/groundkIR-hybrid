@@ -86,23 +86,28 @@ img{max-width:100%;display:block}
 .section{padding:60px 0}
 .footer-grid{grid-template-columns:1fr}
 .footer-bottom{flex-direction:column;text-align:center}
-.hero-stats{grid-template-columns:repeat(2,1fr)!important}
+.hero-inner{grid-template-columns:1fr;text-align:center}
+.hero-text h1{font-size:clamp(1.6rem,6vw,2.2rem)}
+.hero-buttons{justify-content:center}
+.hero-image{max-height:280px}
 }
 /* ========== END SHARED ========== */
 
-/* PAGE-SPECIFIC: HOME */
-.hero{min-height:100vh;display:flex;align-items:center;position:relative;padding-top:72px;background:#fff}
-.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:none;pointer-events:none}
-.hero-content{position:relative;z-index:1;text-align:center;max-width:900px;margin:0 auto;padding:60px 24px}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.15);border-radius:50px;padding:8px 20px;font-size:.8rem;font-weight:600;color:var(--blue);margin-bottom:28px}
-.hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.25;margin-bottom:20px;letter-spacing:-1px}
-.hero h1 em{font-style:normal;color:var(--blue)}
-.hero-sub{font-size:1.1rem;color:var(--text-secondary);margin-bottom:40px;line-height:1.8}
-.hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:60px}
-.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:520px;margin:0 auto}
-.hero-stat{text-align:center}
-.hero-stat .num{font-size:1.8rem;font-weight:900;color:var(--blue)}
-.hero-stat .label{font-size:.8rem;color:var(--gray-400);margin-top:4px}
+/* PAGE-SPECIFIC: HOME - HERO SLIDER */
+.hero-slider{position:relative;padding-top:72px;background:#fff;overflow:hidden}
+.hero-slide{display:none;min-height:calc(100vh - 72px);align-items:center;background:#fff;animation:heroFade .8s ease}
+.hero-slide.active{display:flex}
+@keyframes heroFade{from{opacity:0}to{opacity:1}}
+.hero-inner{max-width:1200px;margin:0 auto;padding:40px 24px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.hero-text h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:900;line-height:1.2;margin-bottom:20px;letter-spacing:-1px;white-space:pre-line}
+.hero-text p{font-size:1.1rem;color:var(--text-secondary);margin-bottom:32px;line-height:1.8}
+.hero-buttons{display:flex;gap:16px;flex-wrap:wrap}
+.hero-image{aspect-ratio:4/3;background:var(--gray-50);border:1px solid #e5e5e5;border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-image img{width:100%;height:100%;object-fit:cover}
+.hero-image .placeholder{text-align:center;color:var(--gray-600);font-size:.9rem;padding:20px}
+.hero-dots{display:flex;justify-content:center;gap:10px;padding:24px 0 32px}
+.hero-dot{width:10px;height:10px;border-radius:50%;background:#d4d4d4;border:none;cursor:pointer;transition:var(--transition)}
+.hero-dot.active{background:var(--blue);transform:scale(1.2)}
 
 .credential-bar{padding:40px 0;background:var(--navy-light);border-top:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5}
 .credential-logos{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;opacity:.5}
@@ -182,21 +187,69 @@ img{max-width:100%;display:block}
 <a href="ir.html#contact" class="btn btn-outline">For Investors</a>
 </div>
 
-<!-- HERO -->
-<section class="hero">
-<div class="hero-content">
-<div class="hero-badge fade-up">&#127760; APEC 2025 &#44277;&#49885; &#49688;&#49569; &#54028;&#53944;&#45320;</div>
-<h1 class="fade-up">PCO&#183;MICE &#45824;&#54665;&#49324;&#47484; &#50948;&#54620;<br><em>&#50896;&#49828;&#53681; &#51060;&#46041; &#50868;&#50689; &#54028;&#53944;&#45320;</em></h1>
-<p class="hero-sub fade-up">&#44397;&#51228;&#54924;&#51032;&#183;&#51221;&#49345;&#54924;&#51032;&#183;&#44592;&#50629;&#54665;&#49324;&#51032; &#52264;&#47049; &#49688;&#49569;&#48512;&#53552; &#44288;&#51228;, &#47532;&#54252;&#53944;&#44620;&#51648;. &#44536;&#46972;&#50868;&#46300;&#52992;&#51060;&#44032; &#53685;&#54633;&#54633;&#45768;&#45796;.</p>
-<div class="hero-buttons fade-up">
-<a href="ir.html#contact" class="btn btn-primary">&#51228;&#50504;&#50836;&#52397;(RFP) &#8594;</a>
-<a href="solutions.html" class="btn btn-outline">&#49556;&#47336;&#49496; &#48372;&#44592;</a>
+<!-- HERO SLIDER -->
+<section class="hero-slider" id="heroSlider">
+<div class="hero-slide active" data-slide="0">
+<div class="hero-inner">
+<div class="hero-text">
+<h1>APEC 2025 KOREA
+공식 수송관리 파트너</h1>
+<p>운수산업의 디지털 전환을 이끄는 B2B 모빌리티 플랫폼 기업</p>
+<div class="hero-buttons">
+<a href="ir.html#contact" class="btn btn-primary">문의하기 &rarr;</a>
+<a href="ir.html" class="btn btn-outline">For Investors &rarr;</a>
 </div>
-<div class="hero-stats fade-up">
-<div class="hero-stat"><div class="num">4&#54924;</div><div class="label">&#51221;&#49345;&#54924;&#51032; &#49688;&#49569;</div></div>
-<div class="hero-stat"><div class="num">130+&#44148;</div><div class="label">&#45572;&#51201; &#54532;&#47196;&#51229;&#53944;</div></div>
-<div class="hero-stat"><div class="num">9&#45380;</div><div class="label">&#47924;&#49324;&#44256; &#50868;&#50689;</div></div>
 </div>
+<div class="hero-image">
+<div class="placeholder">
+<p style="font-weight:700;font-size:1.1rem;margin-bottom:8px">APEC 2025 정상회의</p>
+<p style="font-size:.85rem">의전 수행 장면</p>
+</div>
+</div>
+</div>
+</div>
+<div class="hero-slide" data-slide="1">
+<div class="hero-inner">
+<div class="hero-text">
+<h1>글로벌 럭셔리 브랜드가
+선택한 VIP 의전</h1>
+<p>글로벌 이벤트의 프리미엄 이동 경험을 완벽하게 디자인합니다.</p>
+<div class="hero-buttons">
+<a href="ir.html#contact" class="btn btn-primary">문의하기 &rarr;</a>
+<a href="solutions.html" class="btn btn-outline">솔루션 보기</a>
+</div>
+</div>
+<div class="hero-image">
+<div class="placeholder">
+<p style="font-weight:700;font-size:1.1rem;margin-bottom:8px">Louis Vuitton Pre-Fall</p>
+<p style="font-size:.85rem">VIP 수송 장면</p>
+</div>
+</div>
+</div>
+</div>
+<div class="hero-slide" data-slide="2">
+<div class="hero-inner">
+<div class="hero-text">
+<h1>68개국 재무장관·총재단
+메가 이벤트 차량 지원</h1>
+<p>9년 무사고 운영, 160+ 글로벌 클라이언트가 신뢰하는 오퍼레이션</p>
+<div class="hero-buttons">
+<a href="ir.html#contact" class="btn btn-primary">문의하기 &rarr;</a>
+<a href="performance.html" class="btn btn-outline">실적 보기</a>
+</div>
+</div>
+<div class="hero-image">
+<div class="placeholder">
+<p style="font-weight:700;font-size:1.1rem;margin-bottom:8px">ADB 연차총회 2023</p>
+<p style="font-size:.85rem">68개국 수송 장면</p>
+</div>
+</div>
+</div>
+</div>
+<div class="hero-dots">
+<button class="hero-dot active" data-dot="0"></button>
+<button class="hero-dot" data-dot="1"></button>
+<button class="hero-dot" data-dot="2"></button>
 </div>
 </section>
 
@@ -403,6 +456,23 @@ img{max-width:100%;display:block}
 // Scroll fade-up animation
 const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+// Hero Slider
+(function(){
+const slides=document.querySelectorAll('.hero-slide');
+const dots=document.querySelectorAll('.hero-dot');
+let current=0,timer;
+function go(n){
+slides[current].classList.remove('active');
+dots[current].classList.remove('active');
+current=(n+slides.length)%slides.length;
+slides[current].classList.add('active');
+dots[current].classList.add('active');
+}
+function auto(){timer=setInterval(()=>go(current+1),5000)}
+dots.forEach(d=>d.addEventListener('click',()=>{clearInterval(timer);go(+d.dataset.dot);auto()}));
+auto();
+})();
 </script>
 </body>
 </html>
