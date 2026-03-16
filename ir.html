@@ -509,19 +509,19 @@ img{max-width:100%;display:block}
 <h2 class="section-title fade-up">IR 문의</h2>
 </div>
 <div class="contact-grid fade-up">
-<form class="contact-form" onsubmit="event.preventDefault();alert('문의가 접수되었습니다. 담당자가 확인 후 회신드리겠습니다.')">
-<input type="text" placeholder="이름 / 회사명">
-<input type="email" placeholder="이메일">
-<input type="tel" placeholder="연락처">
-<select style="width:100%;padding:14px 18px;border-radius:var(--radius);border:1px solid #e5e5e5;background:#fff;color:#111;font-family:inherit;font-size:.95rem">
+<form class="contact-form" id="irContactForm" onsubmit="return handleIrSubmit(event)">
+<select id="irType" style="width:100%;padding:14px 18px;border-radius:var(--radius);border:1px solid #e5e5e5;background:#fff;color:#111;font-family:inherit;font-size:.95rem">
 <option value="" disabled selected>문의 유형 선택</option>
 <option>투자 문의</option>
 <option>전략적 제휴</option>
 <option>사업 협력</option>
 <option>기타</option>
 </select>
-<textarea placeholder="문의 내용을 작성해주세요"></textarea>
-<button type="submit" class="btn btn-primary" style="align-self:flex-start">IR 문의하기 &rarr;</button>
+<input type="text" id="irName" placeholder="성함을 입력해주세요" required>
+<input type="email" id="irEmail" placeholder="회신받으실 이메일 주소" required>
+<input type="text" id="irCompany" placeholder="소속 기관·회사명">
+<textarea id="irMessage" rows="4" placeholder="투자 관련 문의 내용을 자유롭게 적어주세요" required></textarea>
+<button type="submit" id="irSubmitBtn" class="btn btn-primary" style="align-self:flex-start">IR 문의 보내기 &rarr;</button>
 </form>
 <div class="contact-info">
 <h3>연락처</h3>
@@ -560,7 +560,7 @@ img{max-width:100%;display:block}
 <h2 class="fade-up">그라운드케이의 성장 구조가 궁금하신가요?</h2>
 <p class="fade-up">서비스·SaaS·플랫폼이 연결되는 구조와<br>확장 가능성을 더 자세히 소개해드릴 수 있습니다.</p>
 <div class="fade-up" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
-<a href="#contact" class="btn btn-white">IR 문의하기 &rarr;</a>
+<a href="#contact" class="btn btn-white">IR 문의 보내기 &rarr;</a>
 <a href="company.html" class="btn btn-ghost">회사 소개 보기</a>
 </div>
 </div>
@@ -614,6 +614,30 @@ img{max-width:100%;display:block}
 <script>
 const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+function handleIrSubmit(e){
+e.preventDefault();
+var type=document.getElementById('irType');
+var name=document.getElementById('irName');
+var email=document.getElementById('irEmail');
+var msg=document.getElementById('irMessage');
+var btn=document.getElementById('irSubmitBtn');
+var fields=[name,email,msg];
+var valid=true;
+fields.forEach(function(f){
+if(!f.value.trim()){f.style.borderColor='red';valid=false}
+else{f.style.borderColor='#e5e5e5'}
+});
+if(!valid)return false;
+var subject=encodeURIComponent('[IR문의] '+(type.value||'일반')+' - '+name.value.trim());
+var body=encodeURIComponent('이름: '+name.value.trim()+'\n이메일: '+email.value.trim()+'\n회사명: '+(document.getElementById('irCompany').value.trim()||'-')+'\n문의 유형: '+(type.value||'-')+'\n\n'+msg.value.trim());
+window.location.href='mailto:ir@groundk.co.kr?subject='+subject+'&body='+body;
+var orig=btn.innerHTML;
+btn.innerHTML='이메일 앱이 열립니다. 전송해주세요!';
+btn.disabled=true;
+setTimeout(function(){btn.innerHTML=orig;btn.disabled=false},2000);
+return false;
+}
 </script>
 </body>
 </html>
