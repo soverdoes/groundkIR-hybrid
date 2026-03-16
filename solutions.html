@@ -121,6 +121,20 @@ img{max-width:100%;display:block}
 .ops-card{text-align:center}
 .ops-card h3{font-size:1.1rem;font-weight:700;margin-bottom:10px}
 .ops-card p{font-size:.9rem;color:var(--gray-500);line-height:1.7}
+.tab-nav{display:flex;gap:8px;justify-content:center;margin-bottom:40px;flex-wrap:wrap}
+.tab-btn{padding:10px 24px;border-radius:50px;border:1.5px solid #e5e5e5;background:transparent;color:#555;font-size:.9rem;font-weight:600;cursor:pointer;font-family:inherit;transition:var(--transition)}
+.tab-btn.active{background:#111;color:#fff;border-color:#111}
+.tab-panel{display:none;max-width:680px;margin:0 auto;text-align:center}
+.tab-panel.active{display:block}
+.tab-panel h3{font-size:1.3rem;font-weight:800;margin-bottom:12px}
+.tab-panel p{font-size:.95rem;color:var(--gray-400);line-height:1.8;margin-bottom:16px}
+.tab-panel .rev-model{font-size:.85rem;color:var(--blue);font-weight:600}
+.ops-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
+.ops-list-item{display:flex;gap:16px;align-items:flex-start;padding:20px 0;border-bottom:1px solid #e5e5e5}
+.ops-list-item:last-child{border-bottom:none}
+.ops-icon{width:36px;height:36px;border-radius:8px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.ops-list-item h4{font-size:1rem;font-weight:700;margin-bottom:4px}
+.ops-list-item p{font-size:.88rem;color:var(--gray-500);line-height:1.6}
 
 .fit-list{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:800px;margin:0 auto}
 .fit-list li{display:flex;align-items:flex-start;gap:10px;font-size:.95rem;color:var(--gray-300);padding:16px;background:#fff;border:1px solid #e5e5e5;border-radius:8px}
@@ -141,6 +155,7 @@ img{max-width:100%;display:block}
 .arch-arrow{justify-content:center;transform:rotate(90deg);padding:8px 0}
 .svc-section,.svc-section.reverse{grid-template-columns:1fr;direction:ltr}
 .fit-list{grid-template-columns:1fr}
+.ops-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -328,18 +343,23 @@ img{max-width:100%;display:block}
 <h2 class="section-title fade-up">서비스·SaaS·플랫폼의 3중 구조</h2>
 <p class="section-desc fade-up" style="margin:0 auto">그라운드케이는 프로젝트형 서비스로 현장 경험과 신뢰를 축적하고,<br>SaaS와 플랫폼으로 반복 매출 기반을 확장합니다.<br>이 구조는 서비스 품질과 확장성을 함께 높입니다.</p>
 </div>
-<div class="grid-3">
-<div class="card rev-card fade-up">
+<div class="tab-nav fade-up">
+<button class="tab-btn active" onclick="switchTab(0)">맞춤형 이동 서비스</button>
+<button class="tab-btn" onclick="switchTab(1)">T-RiseUp SaaS</button>
+<button class="tab-btn" onclick="switchTab(2)">RIDEUS 플랫폼</button>
+</div>
+<div class="fade-up">
+<div class="tab-panel active" data-tab="0">
 <h3>맞춤형 이동 서비스</h3>
 <p>다양한 프로젝트 수행으로 고객 접점과 현금흐름을 확보합니다. 직접 수행 경험은 시스템 고도화의 기반이 됩니다.</p>
 <div class="rev-model">수행할수록 레퍼런스가 쌓입니다</div>
 </div>
-<div class="card rev-card fade-up">
+<div class="tab-panel" data-tab="1">
 <h3>T-RiseUp SaaS</h3>
 <p>운영 기능을 SaaS로 제공해 반복 가능한 소프트웨어 매출 구조를 만듭니다. 현장 검증 기능이 제품 경쟁력으로 이어집니다.</p>
 <div class="rev-model">현장 검증된 기능이 제품 경쟁력입니다</div>
 </div>
-<div class="card rev-card fade-up">
+<div class="tab-panel" data-tab="2">
 <h3>RIDEUS 플랫폼</h3>
 <p>반복 이동 수요를 플랫폼으로 연결해 운영 대행과 이용료 기반 확장 구조를 만듭니다. 네트워크와 데이터가 쌓일수록 효율은 높아집니다.</p>
 <div class="rev-model">데이터가 쌓일수록 운영은 효율화됩니다</div>
@@ -351,23 +371,34 @@ img{max-width:100%;display:block}
 <!-- OPERATIONS SYSTEM -->
 <section class="section bg-light">
 <div class="container">
-<div style="text-align:center;margin-bottom:48px">
-<div class="section-label fade-up">Operations System</div>
-<h2 class="section-title fade-up">서비스 품질을 만드는 운영 체계</h2>
-<p class="section-desc fade-up" style="margin:0 auto">좋은 서비스는 사람만으로 유지되지 않습니다.<br>표준화, 실시간 관제, 데이터 리포팅이 함께 작동해야<br>일관된 품질을 유지할 수 있습니다.</p>
+<div class="ops-grid fade-up">
+<div>
+<div class="section-label">Operations System</div>
+<h2 class="section-title" style="text-align:left">서비스 품질을 만드는 운영 체계</h2>
+<p class="section-desc" style="margin-top:16px">좋은 서비스는 사람만으로 유지되지 않습니다.<br>표준화, 실시간 관제, 데이터 리포팅이 함께 작동해야 일관된 품질을 유지할 수 있습니다.</p>
 </div>
-<div class="grid-3">
-<div class="card ops-card fade-up">
-<h3>SOP 표준화</h3>
+<div>
+<div class="ops-list-item">
+<div class="ops-icon">&#9632;</div>
+<div>
+<h4>SOP 표준화</h4>
 <p>SOP, 브리핑 체크리스트, 비상 대응 매뉴얼로 일관된 품질을 설계합니다.</p>
 </div>
-<div class="card ops-card fade-up">
-<h3>실시간 관제</h3>
+</div>
+<div class="ops-list-item">
+<div class="ops-icon">&#9678;</div>
+<div>
+<h4>실시간 관제</h4>
 <p>GPS 추적, 실시간 운행 파악, 이슈 알림으로 즉시 대응 구조를 만듭니다.</p>
 </div>
-<div class="card ops-card fade-up">
-<h3>데이터 리포팅</h3>
+</div>
+<div class="ops-list-item">
+<div class="ops-icon">&#9638;</div>
+<div>
+<h4>데이터 리포팅</h4>
 <p>운행 데이터와 운영 지표를 정리해 보고와 개선에 활용할 수 있도록 제공합니다.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -434,6 +465,11 @@ img{max-width:100%;display:block}
 <script>
 const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+function switchTab(idx){
+document.querySelectorAll('.tab-btn').forEach(function(b,i){b.classList.toggle('active',i===idx)});
+document.querySelectorAll('.tab-panel').forEach(function(p,i){p.classList.toggle('active',i===idx)});
+}
 </script>
 </body>
 </html>
