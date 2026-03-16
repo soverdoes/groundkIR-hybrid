@@ -469,28 +469,28 @@ img{max-width:100%;display:block}
 <h2 class="section-title fade-up">IR 자료</h2>
 </div>
 <div class="grid-2 fade-up">
-<a href="mailto:ir@groundk.co.kr?subject=[IR자료요청] Company One-pager&body=Company One-pager 자료를 요청합니다." class="material-item" style="text-decoration:none;color:inherit;cursor:pointer">
+<a href="#" onclick="requestIrDoc('Company One-pager');return false" class="material-item" style="text-decoration:none;color:inherit;cursor:pointer">
 <div>
 <h4>Company One-pager</h4>
 <p>1페이지 핵심 요약 자료</p>
 </div>
 <span class="mat-badge">PDF</span>
 </a>
-<a href="mailto:ir@groundk.co.kr?subject=[IR자료요청] Company Fact Sheet&body=Company Fact Sheet 자료를 요청합니다." class="material-item" style="text-decoration:none;color:inherit;cursor:pointer">
+<a href="#" onclick="requestIrDoc('Company Fact Sheet');return false" class="material-item" style="text-decoration:none;color:inherit;cursor:pointer">
 <div>
 <h4>Company Fact Sheet</h4>
 <p>기업 기본 정보 요약표</p>
 </div>
 <span class="mat-badge">PDF</span>
 </a>
-<a href="mailto:ir@groundk.co.kr?subject=[IR자료요청] T-RiseUp 솔루션 소개서&body=T-RiseUp 솔루션 소개서 자료를 요청합니다." class="material-item" style="text-decoration:none;color:inherit;cursor:pointer">
+<a href="#" onclick="requestIrDoc('T-RiseUp 솔루션 소개서');return false" class="material-item" style="text-decoration:none;color:inherit;cursor:pointer">
 <div>
 <h4>T-RiseUp 솔루션 소개서</h4>
 <p>운수업 특화 SaaS 제품 개요</p>
 </div>
 <span class="mat-badge">PDF</span>
 </a>
-<a href="mailto:ir@groundk.co.kr?subject=[IR자료요청] RIDEUS 셔틀 서비스 소개서&body=RIDEUS 셔틀 서비스 소개서 자료를 요청합니다." class="material-item" style="text-decoration:none;color:inherit;cursor:pointer">
+<a href="#" onclick="requestIrDoc('RIDEUS 셔틀 서비스 소개서');return false" class="material-item" style="text-decoration:none;color:inherit;cursor:pointer">
 <div>
 <h4>RIDEUS 셔틀 서비스 소개서</h4>
 <p>셔틀 운영 플랫폼 안내</p>
@@ -638,6 +638,12 @@ btn.innerHTML='이메일 앱이 열립니다. 전송해주세요!';
 btn.disabled=true;
 setTimeout(function(){btn.innerHTML=orig;btn.disabled=false},2000);
 return false;
+}
+
+function requestIrDoc(docName){
+var subject=encodeURIComponent('[IR자료요청] '+docName);
+var body=encodeURIComponent(docName+' 자료를 요청합니다.');
+window.location.href='mailto:ir@groundk.co.kr?subject='+subject+'&body='+body;
 }
 </script>
 </body>
